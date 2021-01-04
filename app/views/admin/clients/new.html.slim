@@ -1,0 +1,23 @@
+- content_for :title do
+  = t('admin.clients.index.create_new_client')
+
+.row
+  .col-lg-8.pr-lg-2
+    = form_for client, url: admin_clients_path, method: :post, html: { id: 'client_form' } do |f|
+      .card.mb-3
+        .card-header
+          h3= t('admin.clients.index.create_new_client')
+        .card-body.bg-light
+          .form-group
+            = f.label :name, t('name')
+            = f.text_field :name, class: 'form-control'
+            = error_for f.object, :name
+          .form-group
+            = f.label :org_id, t('org_number')
+            = f.text_field :org_id, class: 'form-control'
+          .form-group
+            = f.label :billing_info, 'Billing information'
+            = f.text_area :billing_info, rows: "5", class: 'form-control'
+          .d-flex.mt-3
+            = f.submit t('save_changes'), class: 'btn btn-primary mr-1'
+            = link_to 'Back', admin_clients_path, class: 'btn btn-secondary mr-1'

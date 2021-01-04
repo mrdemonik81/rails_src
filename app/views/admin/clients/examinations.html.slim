@@ -1,0 +1,16 @@
+- content_for :title do
+  = t('.examinations_at_client', client: client.name)
+
+.card.mb-3
+  .card-header
+    .d-flex.justify-content-between
+      h3.mb-0= t('.examinations_at_client', client: client.name)
+      = link_to t('back'), admin_client_path(client), class: 'btn btn-secondary btn-sm'
+    = link_to new_admin_examination_path(client_id: client.id), class: 'card-link' do
+      = t('admin.exams.bulk_assign_form.assign_exam_to_candidates')
+      i.fas.fa-chevron-right.fa-fw
+.card.mb-3
+  .card-header
+    h5= t('.count_examinations', count: examinations.total_entries)
+
+  = render partial: 'admin/examinations/list', locals: { examinations: examinations }

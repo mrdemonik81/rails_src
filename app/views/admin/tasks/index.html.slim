@@ -1,0 +1,33 @@
+- content_for :title do
+  = t('.task_base')
+
+.card.mb-3
+  .card-header
+    h5.mb-0= t('.task_base')
+    = link_to new_admin_task_path, class: 'card-link' do
+      = t('admin.tasks.new.new_task')
+      i.fas.fa-chevron-right.fa-fw
+= render partial: 'admin/tasks/list', locals: { tasks: tasks }
+
+- content_for(:filters) do
+  = search_form_for search_form, url: admin_tasks_path, method: :get, enforce_utf8: false, html: { class: 'inline-form' } do |f|
+    .form-group
+      = f.label t('.search_name')
+      = f.search_field :name_cont, class: 'form-control bg-white', placeholder: 'type search'
+    .form-group
+      = f.label t('admin.tasks.new.select_task_type')
+      = f.select :type_eq, options_for_select(Task.types_for_select, params.dig(:q, :type_eq)), { include_blank: '' }, class: 'select2 form-control bg-white'
+    .form-group
+      = f.label t('admin.tasks.relations.select_skills')
+      = f.collection_select :skills_id_in, Skill.all, :id, :name, {}, multiple: true, class: 'select2 form-control bg-white'
+    .form-group
+      = f.label t('admin.tasks.relations.select_domains')
+      = f.collection_select :domains_id_in, Domain.all, :id, :name, {},multiple: true, class: 'select2 form-control bg-white'
+    .form-group
+      = f.label t('admin.tasks.relations.select_levels')
+      = f.collection_select :levels_id_in, Level.all, :id, :name, {}, multiple: true, class: 'select2 form-control bg-white'
+    .form-group
+      = f.label t('published')
+      = f.select :published_true, options_for_select([[t('hidden'), 0], [t('published'), 1]], params.dig(:q, :published_true)), { include_blank: 'Choose status' }, class: 'select2 form-control bg-white'
+    .form-group
+      = submit_tag t('filter'), class: 'btn btn-falcon-default'

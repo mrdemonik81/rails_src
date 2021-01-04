@@ -1,0 +1,5 @@
+console.log(<%= @task.published %>);
+(function(){
+    var $container = $('#<%=dom_id(@task)%>');
+    $container.replaceWith('<%= j render 'admin/task_list_row', task: @task %>')
+})();

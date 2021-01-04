@@ -1,0 +1,9 @@
+(function(){
+    var container = document.querySelector('#candidates_list tbody');
+    var tmpEl = document.createElement('tbody');
+    tmpEl.innerHTML = '<%= j render partial: 'admin/candidates/list_row', locals: { candidate: candidate } %>'
+    container.insertBefore(tmpEl.firstChild, container.firstChild);
+    delete tmpEl;
+    document.querySelector('#add_candidate_candidate_id').reset();
+})();
+

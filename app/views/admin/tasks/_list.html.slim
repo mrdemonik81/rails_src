@@ -1,0 +1,18 @@
+.card.mb-3
+  .card-header
+    h5.mb-0= t('.count_tasks', count: tasks.total_entries)
+
+  .card-body
+    = will_paginate tasks
+    table.table.thead-light.table-hover
+      thead
+        tr
+          th colspan="2"
+            = t('name')
+          th Complexity
+          th Scoring method
+          th Status
+          th
+      tbody
+        - tasks.each do |task|
+          = render 'admin/task_list_row', task: task

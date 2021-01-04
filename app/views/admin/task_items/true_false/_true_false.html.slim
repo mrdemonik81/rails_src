@@ -1,0 +1,11 @@
+div id=dom_id(item)
+  .card.mb-3
+    .card-body
+      = link_to admin_task_item_path(task, item), method: :delete, remote: true, class: 'btn btn-falcon-danger float-right btn-sm', data: { confirm: 'Delete this item?' } do
+        = t('delete')
+      h5= item.statement
+      p.small
+        = t('answer') + ': '
+        span.mt-2 class="#{item.veracity ? 'text-success' : 'text-danger'}"
+          = item.veracity
+

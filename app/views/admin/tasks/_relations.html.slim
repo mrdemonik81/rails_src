@@ -1,0 +1,13 @@
+.row
+  .col-md-4.col-sm-12
+    .form-group
+      = f.label :skill_ids, t('.select_skills')
+      = f.select :skill_ids, options_for_select(Skill.pluck(:name, :id), f.object.skill_ids), {}, { class: 'form-control select2 white', multiple: true }
+  .col-md-4.col-sm-12
+    .form-group
+      = f.label :domain_ids, t('.select_domains')
+      = f.select :domain_ids, options_for_select(Domain.pluck(:name, :id), f.object.domain_ids), {}, { class: 'form-control select2', multiple: true }
+  .col-md-4.col-sm-12
+    .form-group
+      = f.label :level_ids, t('.select_levels')
+      = f.select :level_ids, options_for_select(Level.pluck(:name, :id), f.object.level_ids), {}, { class: 'form-control select2', multiple: true }

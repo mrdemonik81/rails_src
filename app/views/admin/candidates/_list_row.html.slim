@@ -1,0 +1,11 @@
+tr
+  td
+    = link_to candidate.full_name, edit_admin_candidate_path(candidate)
+  td= candidate.email
+  td= candidate.mobile
+  td
+    - if candidate.clients.any?
+      = link_to candidate.clients.first.name, admin_client_path(candidate.clients.first)
+  td
+    - if policy(candidate).update?
+      = link_to t('edit'), edit_admin_candidate_path(candidate), class: 'btn btn-secondary btn-sm'

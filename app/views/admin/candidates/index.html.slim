@@ -1,0 +1,19 @@
+- content_for :title do
+  = t('.candidate_management')
+
+.card
+  .bg-holder.d-none.d-lg-block.bg-card style="background-image:url(#{image_path('illustrations/corner4-sm.png')};"
+  .card-header
+    .row
+      .col-lg-8
+        h3.mb-0= t('.candidate_management')
+        p.mt-2 The candidates are students at a client school or employees at a client company. They can be enrolled to courses and assigned examinations.
+        = link_to new_admin_candidate_path, class: 'card-link' do
+          = t('.create_new_candidate')
+          i.fas.fa-chevron-right.fa-fw
+.card
+  .card-body
+    h5
+      = t('admin.candidates.list.active_candidates')
+      = " (#{candidates.total_entries})"
+  = render partial: 'admin/candidates/list', locals: { candidates: candidates }

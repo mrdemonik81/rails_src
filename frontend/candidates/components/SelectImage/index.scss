@@ -1,0 +1,70 @@
+.select-image-container {
+    .image-container {
+        .image {
+            display: inline-block;
+            margin: 5px;
+            width: calc(25% - 10px);
+            position: relative;
+            img {
+                width: 100%;
+                border-radius: 10px;
+            }
+            input {
+                display: none;
+            }
+            label {
+                position: absolute;
+                right: 15px;
+                top: 15px;
+                width: 22px;
+                height: 22px;
+                border: 1px solid white;
+                border-radius: 2px;
+                background-color: rgba(242, 242, 242, 0.3);
+            }
+            &.crossed {
+                label {
+                    background-color: #ec6492;
+                    &:before, &::after {
+                        position: absolute;
+                        content: ' ';
+                        height: 18px;
+                        width: 2px;
+                        background-color: white;
+                        border: none;
+                        left: 9px;
+                        top: 1px;
+                    }
+                    &:before {
+                        transform: rotate(45deg);
+                    }
+                    &:after {
+                        transform: rotate(-45deg);
+                    }
+                }
+            }
+            &.checked {
+                label {
+                    background-color: #00b4e5;
+                    &::after {
+                        content: '';
+                        color: white;
+                        position: absolute;
+                        right: 6px;
+                        top: 0;
+                        width: 8px;
+                        height: 16px;
+                        transform: rotate(45deg);
+                        border: solid white;
+                        border-width: 0 2px 2px 0;
+                    }
+                }
+                &.result {
+                    label {
+                        background-color: #b0d45f;
+                    }
+                }
+            }
+        }
+    }
+}

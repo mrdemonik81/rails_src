@@ -1,0 +1,9 @@
+(function(){
+    var container = document.querySelector('#user_list tbody');
+    var tmpEl = document.createElement('tbody');
+    tmpEl.innerHTML = '<%= j render partial: 'admin/users/list_row', locals: { user: user } %>'
+    container.insertBefore(tmpEl.firstChild, container.firstChild);
+    delete tmpEl;
+    document.querySelector('#add_user_user_id').reset();
+})();
+

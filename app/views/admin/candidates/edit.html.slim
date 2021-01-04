@@ -1,0 +1,69 @@
+- content_for :title do
+  = candidate.full_name
+
+.content
+  .row
+    .col-lg-12
+      .card.mb-3
+        .card-header
+          h5.mb-0
+            = t('admin.users.edit.manage_profile_for', name: candidate.full_name)
+  .row
+    .col-lg-8.pr-lg-2
+      = form_for candidate, url: admin_candidate_path(candidate), method: :patch, html: { id: 'candidate_form' } do |f|
+        .card.mb-3
+          .card-header
+            h5.mb-0= t('.personal_data')
+          .card-body.bg-light
+            .row
+              .col-lg-6
+                .form-group
+                  = f.label :fname, t('first_name')
+                  = f.text_field :fname, class: 'form-control'
+                  = error_for f.object, :fname
+              .col-lg-6
+                .form-group
+                  = f.label :lname, t('last_name')
+                  = f.text_field :lname, class: 'form-control'
+                  = error_for f.object, :lname
+              .col-lg-6
+                = f.label :email, t('email')
+                = f.email_field :email, class: 'form-control'
+                = error_for f.object, :email
+              .col-lg-6
+                .form-group
+                  = f.label :mobile, t('admin.users.edit.mobile')
+                  = f.text_field :mobile, class: 'form-control'
+              .col-lg-6
+                .form-group
+                  = f.label :ssn, t('ssn')
+                  = f.text_field :ssn, class: 'form-control'
+                  = error_for f.object, :ssn
+              .col-lg-12
+                - Candidate.genders.keys.each do |g|
+                  .custom-control.custom-radio
+                    = f.radio_button :gender, g, class: 'custom-control-input'
+                    = f.label "gender_#{g}".to_sym, g.humanize, class: 'custom-control-label'
+              .col-12.d-flex.mt-3
+                = f.submit t('save_changes'), class: 'btn btn-primary mr-1'
+                = link_to t('back'), admin_candidates_path, class: 'btn btn-secondary mr-1'
+
+    .col-lg-4.pl-lg-2
+      .sticky-top.sticky-sidebar
+        .card.mb-3.overflow-hidden
+          .card-header
+            h5.mb-0= t('.client')
+          ul.list-group.list-group-flush
+            - candidate.clients.each do |c|
+              li.list-group-item
+                = link_to admin_client_path(c) do
+                  i.fas.fa-chevron-right.fa-fw
+                  = c.name
+
+        .card.mb-3.overflow-hidden
+          .card-header
+            h5.mb-0= t('danger_zone')
+          .card-body
+            = link_to admin_candidate_path(candidate), class: 'btn btn-falcon-danger d-block', method: :delete, data: { confirm: 'Are you sure you want to delete this candidate?' } do
+              i.fas.fa-times.fa-fw
+              = t('deactivate_account')

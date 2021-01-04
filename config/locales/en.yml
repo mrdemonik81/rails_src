@@ -1,0 +1,382 @@
+---
+en:
+  actions: Actions
+  add_audio: Add audio
+  add_candidate: Add candidate
+  admin:
+    candidates:
+      edit:
+        client: Client(s)
+        personal_data: Personal data
+      index:
+        candidate_management: Candidate management
+        create_new_candidate: Create new candidate
+      list:
+        active_candidates: Active candidates
+    clients:
+      candidates:
+        candidates_at_client: Candidates at %{client}
+        search_candidates: Search candidates
+      examinations:
+        count_examinations: "%{count} examinations"
+        examinations_at_client: Examinations at %{client}
+      index:
+        active_clients: Active clients
+        client_management: Client management
+        create_new_client: Create new client
+        resource: Resource
+      licenses:
+        active_licenses: Active licenses
+        licenses_at_client: Licenses at %{client}
+      select_text:
+        select_text:
+          answer: Answer
+      show:
+        add_user: Add user
+        add_users: Add users
+        candidates: Candidates
+        create_new_license: Create new license
+        manage_client: Manage client
+        no_licenses_for_client: "%{client} has no active licenses at the moment"
+        search_users: Search users
+        users: Users
+        view_all: View all
+    examinations:
+      index:
+        assign_exam_to_candidate: Assign exam to candidate
+      list:
+        score: Score
+      new:
+        select_candidate: Select candidate
+        select_client: Select client
+        select_exam: Select exam
+      show:
+        examination_candidate: Examination by %{name}
+        examination_evaluation: Examination evaluation
+        select_examiner: Select examiner
+      update:
+        examination_updated_html: Examination was successfully updated
+    exams:
+      bulk_assign_form:
+        assign_exam_to_candidates: Assign exam to candidates
+        select_client: Select client
+      form:
+        description_placeholder: Enter description
+      index:
+        available_exams: Available exams
+        create_new_exam: Create new exam
+        manage_exams: Manage exams
+      new:
+        create_exam: Create exam
+        default_price: Default price
+        maximum_tasks: Defined number of tasks
+        maximum_time: Maximum allowed time
+    task_items:
+      audio:
+        audio:
+          input_minimum_duration: Input minimum audio duration
+          minimum_duration: Minimum Duration
+      essay:
+        essay:
+          input_minimum_words: Input minimum words length
+          minimum_words: Minimum Words
+      select_image:
+        forms:
+          form:
+            add_question: Add question
+        select_image:
+          please_upload_image: Please upload image
+          upload_image: Upload image
+      select_text:
+        forms:
+          form:
+            add_question: Add question
+            new_question: New question
+        select_text:
+          input_answers_select: Input answers and mark correct option(s)
+      true_false:
+        forms:
+          form:
+            add_statement: Add statement
+            new_statement: New statement
+        true_false:
+          enter_true_false_statements: Enter true or false statements
+    tasks:
+      audio:
+        forms:
+          form:
+            audio: Audio
+      audio_dialogue:
+        forms:
+          form:
+            enter_name_of_partner: Enter partner name
+            input_answers_select: Upload audio dialogue parts
+            partner_name: Dialogue partner name
+      enter_help_text_for_candidate: Enter help text for candidate
+      enter_title: Enter title
+      essay:
+        forms:
+          form:
+            essay: Essay
+      fill_in_blanks:
+        forms:
+          form:
+            fill_in_blanks: Fill in blanks
+            fill_in_blanks_example: I *love *this city
+            fill_in_blanks_guidelines: Put the correct word or phrase inside two asterisks.
+              Separate correct alternatives with colon (:).
+      hints_placeholder: Enter hints to help solve the task
+      index:
+        search_name: Search by name
+        task_base: Task base
+      inline_dropdown:
+        forms:
+          form:
+            inline_dropdown_guidelines: The *select* will be replaced by a dropdown
+              field with the different options. The first alternative is correct.
+      instructions_for_candidate: Instructions for candidate
+      introduction_task_placeholder: Introduction text for task
+      list:
+        count_tasks: "%{count} tasks"
+        settings: Settings
+      main_form:
+        save_and_continue: Save and continue
+      mark_word:
+        forms:
+          form:
+            sentences: Sentence
+      new:
+        new_task: Create new task
+        save_and_continue: Save and continue
+        select_task_type: Select task type
+      relations:
+        select_domains: Select domains
+        select_levels: Select levels
+        select_skills: Select skills
+      select_text:
+        fields:
+          hints_or_help: Hints or helpful instructions
+        forms:
+          form:
+            questions: Questions
+      settings:
+        content: Configure content
+        task_settings_for: Update task settings for %{name}
+        task_type: Task type
+      shared_task_fields:
+        score_fractional_label: Fractional (automatic), for example 4 out of 5 points.
+        score_manual_label: Manual scoring by examiner
+        score_true_false_label: True/false (automatic), if answered 100% correct
+      task_introduction: Task introduction
+      task_title: Task title
+      true_false:
+        forms:
+          form:
+            statements: Statements
+      upload_audio: Upload audio file
+    users:
+      edit:
+        about_me_placeholder: A few sentences about me
+        delete_account: Delete this account
+        manage_profile_for: Manage profile for %{name}
+        mobile: Mobile number
+      index:
+        client_management: Client management
+        user_management: User management
+      list:
+        active_users: Active users
+        client: Client
+  amount: Amount
+  answer: Answer
+  assigned_to: Assigned to
+  authorization_error: You are not authorized to perform this action.
+  back: Back
+  candidates: Candidates
+  client: Client
+  comment: Comment
+  configure: Configure
+  correct: Correct
+  correct_word_order: Correct word order
+  count_error_message_model:
+    one: One error prevented this %{model} from being saved.
+    other: "%{count} errors prevented this %{model} from being saved."
+  create: Create
+  create_candidate: Create candidate
+  created: Created
+  danger_zone: Danger zone
+  deactivate_account: Deactivate account
+  delete: Delete
+  delete_this_item: Delete this item?
+  deleted: Deleted
+  description: Description
+  devise:
+    account_login: Account Login
+    confirmations:
+      confirmed: Your email address has been successfully confirmed.
+      send_instructions: You will receive an email with instructions for how to confirm
+        your email address in a few minutes.
+      send_paranoid_instructions: If your email address exists in our database, you
+        will receive an email with instructions for how to confirm your email address
+        in a few minutes.
+    enter_email_receive_link: Enter your email and we'll send you a reset link.
+    errors:
+      messages:
+        already_confirmed: was already confirmed, please try signing in
+        confirmation_period_expired: needs to be confirmed within %{period}, please
+          request a new one
+        expired: has expired, please request a new one
+        not_found: not found
+        not_locked: was not locked
+        not_saved:
+          one: '1 error prohibited this %{resource} from being saved:'
+          other: "%{count} errors prohibited this %{resource} from being saved:"
+    failure:
+      already_authenticated: You are already signed in.
+      inactive: Your account is not activated yet.
+      invalid: Invalid %{authentication_keys} or password.
+      last_attempt: You have one more attempt before your account is locked.
+      locked: Your account is locked.
+      not_found_in_database: Invalid %{authentication_keys} or password.
+      timeout: Your session expired. Please sign in again to continue.
+      unauthenticated: You need to sign in or sign up before continuing.
+      unconfirmed: You have to confirm your email address before continuing.
+    forgot_password: Forgot password?
+    mailer:
+      confirmation_instructions:
+        subject: Confirmation instructions
+      email_changed:
+        subject: Email Changed
+      password_change:
+        subject: Password Changed
+      reset_password_instructions:
+        subject: Reset password instructions
+      unlock_instructions:
+        subject: Unlock instructions
+    omniauth_callbacks:
+      failure: Could not authenticate you from %{kind} because "%{reason}".
+      success: Successfully authenticated from %{kind} account.
+    passwords:
+      no_token: You can't access this page without coming from a password reset email.
+        If you do come from a password reset email, please make sure you used the
+        full URL provided.
+      send_instructions: You will receive an email with instructions on how to reset
+        your password in a few minutes.
+      send_paranoid_instructions: If your email address exists in our database, you
+        will receive a password recovery link at your email address in a few minutes.
+      updated: Your password has been changed successfully. You are now signed in.
+      updated_not_active: Your password has been changed successfully.
+    registrations:
+      destroyed: Bye! Your account has been successfully cancelled. We hope to see
+        you again soon.
+      edit:
+        about_me_placeholder: About me
+        change_password: Change your password
+        enter_new_password: Enter new password
+        enter_old_password: Enter current password
+        enter_password_again: Enter password again
+        update_profile: Update profile
+      new:
+        create_account: Create account
+        enter_first_name: Enter first name
+        enter_last_name: Enter last name
+      signed_up: Welcome! You have signed up successfully.
+      signed_up_but_inactive: You have signed up successfully. However, we could not
+        sign you in because your account is not yet activated.
+      signed_up_but_locked: You have signed up successfully. However, we could not
+        sign you in because your account is locked.
+      signed_up_but_unconfirmed: A message with a confirmation link has been sent
+        to your email address. Please follow the link to activate your account.
+      update_needs_confirmation: You updated your account successfully, but we need
+        to verify your new email address. Please check your email and follow the confirm
+        link to confirm your new email address.
+      updated: Your account has been updated successfully.
+      updated_but_not_signed_in: Your account has been updated successfully, but since
+        your password was changed, you need to sign in again
+    send_reset_link: Send me reset link
+    sessions:
+      already_signed_out: Signed out successfully.
+      signed_in: Signed in successfully.
+      signed_out: Signed out successfully.
+    unlocks:
+      send_instructions: You will receive an email with instructions for how to unlock
+        your account in a few minutes.
+      send_paranoid_instructions: If your account exists, you will receive an email
+        with instructions for how to unlock it in a few minutes.
+      unlocked: Your account has been unlocked successfully. Please sign in to continue.
+  edit: Edit
+  edit_exam_name: Editing %{name}
+  email: Email
+  enrolments: Enrolments
+  enter_statement: Enter statement here
+  examinations: Examinations
+  example: Example
+  exams: Exams
+  expires_at: Expires at
+  filter: Filter
+  first_name: First name
+  hidden: Hidden
+  incorrect: Incorrect
+  instructions: Instructions
+  invalid_score_method: Invalid scoring method for this task type
+  last_name: Last name
+  layouts:
+    admin:
+      profile_menu:
+        my_profile: My profile
+    authoring:
+      sidebar:
+        back_to_tasks: Back to tasks
+    examiner:
+      sidebar:
+        back_to_examinations: Back to examinations
+  licenses: Licenses
+  mobile_number: Mobile number
+  move_down: Move down
+  move_up: Move up
+  name: Name
+  nok: NOK
+  org_number: Organisation number
+  platform_role: Platform role
+  preview: Preview
+  publish_exam: Publish exam
+  published: Published
+  result_type_label: Show exam results
+  role: Role
+  roles: Roles and abilities
+  save: Save
+  save_changes: Save changes
+  score: Score
+  search_candidate: Search candidate
+  sessions:
+    create: Create
+  show: Show
+  sign_out: Sign out
+  ssn: Social security number
+  status: Status
+  success_signed_in: Successfully signed in
+  success_signed_out: Successfully signed out
+  task_algorithm: Task selection algorithm
+  task_guidelines: Task guidelines
+  task_scoring_label: Task scoring method
+  tasks:
+    types:
+      tasks/arrange_words: Arrange Words Task
+      tasks/audio: Audio Task
+      tasks/audio_dialogue: Audio Dialogue Task
+      tasks/essay: Essay Task
+      tasks/fill_in_blanks: Fill in Blanks Task
+      tasks/inline_dropdown: Inline dropdown task
+      tasks/mark_word: Mark words task
+      tasks/select_image: Select image task
+      tasks/select_text: Multiple choice task
+      tasks/true_false: True/false task
+  time_spent: Time spent
+  title: Title
+  type: Type
+  update: Update
+  upload: Upload
+  users: Users
+  welcome:
+    signin:
+      enter_email: Enter email
+      welcome_title: Welcome to Edun

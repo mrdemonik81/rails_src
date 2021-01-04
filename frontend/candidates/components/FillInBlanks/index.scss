@@ -1,0 +1,15 @@
+.fill-in-blanks {
+  .block-container {
+    line-height: 33px;
+    .input-answer {
+      border: 1px solid #D6D9E2;
+      height: 30px;
+      border-radius: 6px;
+      width: 100px;
+    }
+    span {
+      display: inline-block;
+      word-break: break-all;
+    }
+  }
+}

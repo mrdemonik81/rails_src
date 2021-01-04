@@ -1,0 +1,60 @@
+.true-false-container {
+  .question {
+    font-size: 16px;
+    line-height: 26px;
+    letter-spacing: 0.3px;
+    color: #798497;
+  }
+  .btn {
+    font-size: 16px;
+    line-height: 22px;
+    height: 62px;
+    letter-spacing: 0.3px;
+    padding: 20px 33px;
+    border-radius: 6px;
+    margin: 10px;
+    &.bg-blue {
+      background-color: #68bbe3;
+      color: #f5faf5 !important;
+      &:hover {
+        background-color: #00b4e5;
+        .btn-helper {
+          &::before {
+            color: #00b4e5;
+            border-color: #00b4e5;
+          }
+        }
+      }
+      .btn-helper {
+        padding-right: 18px;
+        margin-right: 10px;
+        border-radius: 10px;
+        padding-top: 1px;
+        background-color: white;
+        position: relative;
+        &::before {
+          content: '';
+          color: #68bbe3;
+          position: absolute;
+          left: -3px;
+          top: -7px;
+          margin: 10px;                
+          width: 5px;                
+          height: 12px;
+          transform: rotate(45deg);
+          border: solid #68bbe3;
+          border-width: 0 2px 2px 0;
+        }
+      }
+    }
+    &.bg-white {
+      .btn-helper {
+        padding-right: 18px;
+        margin-right: 10px;
+        border-radius: 10px;
+        padding-top: 1px;
+        border: 1px solid #b5bfce;
+      }
+    }
+  }
+}

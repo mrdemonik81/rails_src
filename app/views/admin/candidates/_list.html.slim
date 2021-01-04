@@ -1,0 +1,13 @@
+= will_paginate candidates
+#candidates_list.bg-light
+  table.table.thead-light.table-hover.table-condensed
+    thead
+      tr
+        th= t('name')
+        th= t('email')
+        th= t('mobile_number')
+        th= t('admin.users.list.client')
+        th
+    tbody
+      - candidates.each do |candidate|
+        = render partial: 'admin/candidates/list_row', locals: { candidate: candidate }

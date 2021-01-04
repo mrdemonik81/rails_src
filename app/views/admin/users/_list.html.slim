@@ -1,0 +1,19 @@
+.card
+  .card-header
+    h5.mb-0
+      = t('.active_users')
+      = " (#{users.total_entries})"
+  #user_list.card-body.bg-light
+    = will_paginate users
+    table.table.thead-light.table-hover
+      thead
+        tr
+          th= t('name')
+          th= t('email')
+          th= t('role')
+          - unless controller_name == 'clients'
+            th= t('.client')
+          th
+      tbody
+        - users.each do |user|
+          = render partial: 'admin/users/list_row', locals: { user: user }

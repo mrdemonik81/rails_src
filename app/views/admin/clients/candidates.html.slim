@@ -1,0 +1,25 @@
+- content_for :title do
+  = t('.candidates_at_client', count: candidates.total_entries, client: client.name)
+
+.card.mb-3
+  .card-header
+    .d-flex.justify-content-between
+      h3.mb-0= t('.candidates_at_client', count: candidates.total_entries, client: client.name)
+      = link_to t('back'), admin_client_path(client), class: 'btn btn-secondary btn-sm'
+    = link_to new_admin_candidate_path, class: 'card-link' do
+      = t('admin.candidates.index.create_new_candidate')
+      i.fas.fa-chevron-right.fa-fw
+.card.mb-3
+  .card-header
+    = form_for :add_candidate, html: { id: 'add_candidates_form' }, remote: true, url: add_candidate_admin_client_path(client) do |f|
+      .row
+        .col-sm-5
+          h5
+            = t('admin.candidates.list.active_candidates')
+            = " (#{candidates.total_entries})"
+        .col-sm-4
+          .form-group
+            = f.select :candidate_id, [], {}, class: 'select2-remote form-control usersearch', data: { placeholder: I18n.t('.search_candidate') }
+        .col-sm-2
+          = f.submit I18n.t('.add_candidate'), class: 'btn btn-falcon-default'
+  = render partial: 'admin/candidates/list', locals: { candidates: client.candidates.paginate(page: params[:page]) }

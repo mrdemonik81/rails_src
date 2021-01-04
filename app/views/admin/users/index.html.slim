@@ -1,0 +1,12 @@
+- content_for :title do
+  = t('.user_management')
+
+.card.mb-3.overflow-hidden
+  .bg-holder.d-none.d-lg-block.bg-card style="background-image:url(#{image_path('illustrations/corner3.png')};"
+  .card-body
+    .row
+      .col-lg-8
+        h3.mb-0= t('.user_management')
+        p.mt-2 The users on the platform are either employees at Edun, or representatives for a client, where they can manage enrolments and examinations.
+
+= render partial: 'admin/users/list', locals: { users: users }

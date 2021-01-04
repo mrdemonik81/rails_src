@@ -1,0 +1,4 @@
+(function(){
+    var $container = $('#<%= dom_id(@license) %>');
+    $container.replaceWith('<%= j render 'admin/licenses/license_row', license: @license %>')
+})();

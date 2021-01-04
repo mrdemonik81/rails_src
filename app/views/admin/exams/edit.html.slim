@@ -1,0 +1,8 @@
+- content_for :title do
+  = t('edit_exam_name', name: exam.name)
+.card.mb-3
+  .card-header
+    h5.mb-0= t('edit_exam_name', name: exam.name)
+  .card-body
+    = form_for exam, url: admin_exam_path(exam), html: { id: 'exam_form' }, method: :put do |f|
+      = render partial: 'admin/exams/form', locals: { f: f, exam: exam }

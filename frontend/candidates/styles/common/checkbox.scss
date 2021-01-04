@@ -1,0 +1,95 @@
+.checkbox {
+    display: block !important;
+    height: 45px;
+    border-radius: 5px;
+    position: relative;
+    cursor: pointer;
+    input {
+        display: none;
+    }
+    label {
+        color: #4c5972;
+        line-height: 15px;
+        padding: 15px 40px;
+        cursor: pointer;
+        position: absolute;
+        left: 0;
+        height: 100%;
+        width: 100%;
+        &::before {
+            content: '';
+            position: absolute;
+            left: 0; top: 0;
+            width: 15px;
+            height: 15px;
+            border: 1px solid #b5bfce;
+            background: #fff;
+            border-radius: 2px;
+            margin: 15px;
+        }
+    }
+    &.checked {
+        background-color: #00b4e5;
+        color: white;
+        label {
+            &::before {
+                border: none;
+            }
+            &::after {
+                content: '';
+                color: #00b4e5;
+                position: absolute;
+                left: 10px;
+                top: 5px;                
+                margin: 10px;                
+                width: 5px;                
+                height: 12px;
+                transform: rotate(45deg);
+                border: solid #00b4e5;
+                border-width: 0 2px 2px 0;
+            }
+        }
+    }
+    &.crossed {
+        label {
+            &:before, &::after {
+                position: absolute;
+                content: ' ';
+                height: 18px;
+                width: 2px;
+                background-color: #ec6492;
+                border: none;
+            }
+            &:before {
+                left: 5px;
+                transform: rotate(45deg);
+            }
+            &:after {
+                left: 20px;
+                transform: rotate(-45deg);
+            }
+        }
+    }
+    &.result {
+        background-color: transparent;
+        label {
+            color: #b5bfce;
+        }
+        &.checked {
+            label {
+                color: #b0d45f;
+                &::after {
+                    border-color: #b0d45f;
+                }
+                &::before {
+                    content: none;
+                }
+            }
+        }
+        &.crossed {
+            label {
+                color: #ec6492;
+            }
+        }
+    }
+}

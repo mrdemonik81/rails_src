@@ -1,0 +1,4 @@
+(function(){
+  var $container = $('#task_items_container');
+  $container.html('<%= render partial: 'admin/task_items/audio_dialogue/audio_dialogue', collection: task.items, as: :item, locals: { task: task } %>');
+})();

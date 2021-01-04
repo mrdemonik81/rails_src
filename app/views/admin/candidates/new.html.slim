@@ -1,0 +1,43 @@
+- content_for :title do
+  = t('admin.candidates.index.create_new_candidate')
+
+.card.mb-3
+  .card-header
+    h5.mb-0= t('admin.candidates.index.create_new_candidate')
+  .card-body
+    = form_for candidate, url: admin_candidates_path, html: { id: 'candidate_form' } do |f|
+      - if candidate.errors.any?
+        .alert.alert-warning#error_explanation
+          h5
+            = t('count_error_message_model', count: candidate.errors.count, model: candidate.model_name.human)
+          ul
+            - candidate.errors.full_messages.each do |message|
+              li= message
+      .row
+        .col-lg-6
+          .form-group
+            = f.label :fname, t('first_name')
+            = f.text_field :fname, class: 'form-control'
+            = error_for f.object, :fname
+        .col-lg-6
+          .form-group
+            = f.label :lname, t('last_name')
+            = f.text_field :lname, class: 'form-control'
+            = error_for f.object, :lname
+        .col-lg-6
+          = f.label :email, t('email')
+          = f.email_field :email, class: 'form-control'
+          = error_for f.object, :email
+        .col-lg-6
+          .form-group
+            = f.label :mobile, t('admin.users.edit.mobile')
+            = f.text_field :mobile, class: 'form-control'
+            = error_for f.object, :mobile
+        .col-lg-12
+          - Candidate.genders.except(:unknown).keys.each do |g|
+            .custom-control.custom-radio
+              = f.radio_button :gender, g, class: 'custom-control-input'
+              = f.label "gender_#{g}".to_sym, g.humanize, class: 'custom-control-label'
+        .col-12.d-flex.mt-3
+          = f.submit t('create_candidate'), class: 'btn btn-primary mr-1'
+          = link_to t('back'), admin_candidates_path, class: 'btn btn-secondary mr-1'

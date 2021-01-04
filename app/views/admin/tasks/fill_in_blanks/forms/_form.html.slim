@@ -1,0 +1,27 @@
+- content_for(:instructions) do
+  .card.text-white.bg-info.mt-5
+    .card-body
+      .card-title= t('task_guidelines')
+      p.card-text= t('.fill_in_blanks_guidelines')
+      p.card-text.font-italic
+        = t('example') + ': '
+        | The man took the *lift:elevator* to the top floor.
+.card
+  .card-header
+    .d-flex.justify-content-between.align-items-center
+      h2.mb-1= task.name
+      = link_to settings_admin_task_path(task), class: 'btn btn-light float-right' do
+        i.fas.fa-cog.fa-fw
+        = t('edit')
+    p.card-text= t(task.type.underscore, scope: 'tasks.types')
+  .card-body
+    = form_for form, as: :task, url: admin_task_path(task), method: :patch do |f|
+      = render 'admin/tasks/shared_task_fields', f: f
+      .form-group
+        = f.submit t('save_changes'), class: 'btn btn-primary'
+
+#task_items.mt-3
+  - task.items.each do |item|
+    = render 'admin/task_items/fill_in_blanks/fill_in_blanks', item: item, task: task
+  .links.inline_dropdown_item
+    = render task.items.form.new, task: task

@@ -1,0 +1,9 @@
+div id=dom_id(item)
+  .card.mb-3
+    .card-body
+      = link_to admin_task_item_path(task, item), method: :delete, remote: true, class: 'float-right', data: { confirm: 'Delete this item?'} do
+        span.text-danger
+          i.fas.fa-trash-alt
+          = t('delete')
+      p.card-text= item.statement
+

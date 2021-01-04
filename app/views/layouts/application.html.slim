@@ -1,0 +1,64 @@
+doctype html
+html
+  head
+    meta content=("text/html; charset=UTF-8") http-equiv="Content-Type" /
+    meta charset="utf-8" /
+    meta content="IE=edge" http-equiv="X-UA-Compatible" /
+    meta content="width=device-width, initial-scale=1" name="viewport" /
+    - if content_for? :title
+      title= [yield(:title), 'edun.no'].join(' | ')
+    - else
+      title 'edun.no'
+    link href="#{image_path('favicons/apple-touch-icon.png')}" rel="apple-touch-icon" sizes="180x180" /
+    link href="#{image_path('favicons/favicon-32x32.png')}" rel="icon" sizes="32x32" type="image/png" /
+    link href="#{image_path('favicons/favicon-16x16.png')}" rel="icon" sizes="16x16" type="image/png" /
+    link href="#{image_path('favicons/favicon.ico')}" rel=("shortcut icon") type="image/x-icon" /
+    meta content="#{image_path('favicons/mstile-150x150.png')}" name="msapplication-TileImage" /
+    meta content="#ffffff" name="theme-color" /
+    = csrf_meta_tags
+    = csp_meta_tag
+    = stylesheet_pack_tag 'application', media: 'all'
+  body
+    main#top.main
+      .container
+        .content
+          nav.navbar.navbar-light.navbar-glass.fs--1.font-weight-semi-bold.row.navbar-top.sticky-kit.navbar-expand
+            button.navbar-toggler.collapsed aria-controls="navbarVerticalCollapse" aria-expanded="false" aria-label=("Toggle navigation") data-target="#navbarVerticalCollapse" data-toggle="collapse" type="button"
+              span.navbar-toggler-icon
+            a.navbar-brand.text-left.ml-3 href="/"
+              .d-flex.align-items-center
+                img.mr-2 alt="" src="#{image_path('edun-logo.svg')}" width="90" /
+            #navbarNavDropdown1.collapse.navbar-collapse
+              ul.navbar-nav.align-items-center.d-none.d-lg-block
+                li.nav-item
+                  form.form-inline.search-box
+                    input.form-control.rounded-pill.search-input aria-label="Search" placeholder="Search..." type="search" /
+                    span.position-absolute.fas.fa-search.text-400.search-box-icon
+              ul.navbar-nav.align-items-center.ml-auto
+                li.nav-item.dropdown
+                  - if User.current
+                    = link_to admin_clients_path, class: 'nav-link' do
+                      span.fas.fa-cogs.fs-2.fa-fw data-fa-transform="shrink-6"
+
+                  - if User.current
+                    li.nav-item= link_to t('sign_out'), destroy_user_session_path, class: 'dropdown-item', method: :delete
+                  - else
+                    li.nav-item= link_to 'Sign in with Google', '/users/auth/google_oauth2', class: 'btn btn-primary'
+          - if notice
+            .alert.alert-success= notice
+          - if alert
+            .alert.alert-danger= alert
+          = yield
+
+          footer
+            .row.no-gutters.justify-content-between.fs--1.mt-4.mb-3
+              .col-12.col-sm-auto.text-center
+                p.mb-0.text-600
+                  | Thank you for being an eduner
+                  span.d-none.d-sm-inline-block \
+                  br.d-sm-none
+                  = Date.today.year
+                  a href="https://edun.no"  Educate AS
+              .col-12.col-sm-auto.text-center
+                p.mb-0.text-600 v1.8.0
+    = javascript_pack_tag 'application'

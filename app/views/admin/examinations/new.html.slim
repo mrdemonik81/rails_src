@@ -1,0 +1,28 @@
+- content_for :title do
+  = t('admin.exams.bulk_assign_form.assign_exam_to_candidates')
+
+.card
+  .card-header
+    h5.mb-0= t('admin.exams.bulk_assign_form.assign_exam_to_candidates')
+  .card-body
+    = form_for examination, url: admin_examinations_path, html: { id: 'examination_form' }, method: :post do |f|
+      - if examination.errors.any?
+        .alert.alert-warning#error_explanation
+          h5
+            = t('count_error_message_model', count: examination.errors.count, model: examination.model_name.human)
+          ul
+            - examination.errors.full_messages.each do |message|
+              li= message
+      .row
+        .col-lg-6
+          .form-group
+            = f.select :exam_id, options_from_collection_for_select(Exam.all, :id, :name), { prompt: t('.select_exam') }, class: 'select2 form-control'
+          .form-group
+            = f.select :client_candidate_id, options_from_collection_for_select(ClientCandidate.all, :id, lambda { |cc| "#{cc.candidate.full_name} (#{cc.client.name})" }), { prompt: t('.select_candidate') }, class: 'select2 form-control'
+          .form-group
+            = f.text_field :expires_at, class: 'form-control datetimepicker', data: { options: { dateFormat: 'Y-m-d' } }, placeholder: 'Exam link expiry date'
+
+
+        .col-12.d-flex.mt-3
+          = f.submit 'Assign now', class: 'btn btn-primary mr-1'
+          = link_to t('back'), admin_exams_path, class: 'btn btn-secondary mr-1'

@@ -1,0 +1,28 @@
+tr id=dom_id(task)
+  td.align-middle
+    i.fas.fa-fw.mr-1.fa-1x class=(task_icon_class(task))
+  td
+    = link_to edit_admin_task_path(task) do
+      = task.name
+    br
+    small= t(task.type.underscore, scope: 'tasks.types')
+  td= task.complexity
+  td= task.score_method.humanize
+  td
+    = link_to toggle_published_admin_task_path(task), method: :patch, remote: :true, class: "badge badge rounded-capsule badge-soft-#{task.published? ? 'success' : 'warning' }" do
+      - if task.published?
+        i.fas.fa-eye.fa-fw.mr-1
+        = t('published')
+      - else
+        i.fas.fa-eye-slash.fa-fw.mr-1
+        = t('hidden')
+  td.float-right
+    = link_to '', class: 'btn btn-falcon-primary btn-sm' do
+      i.fas.fa-eye.fa-fw
+    = link_to edit_admin_task_path(task), class: 'btn btn-falcon-default btn-sm' do
+      i.fas.fa-pencil-alt.fa-fw
+    = link_to settings_admin_task_path(task), class: 'btn btn-falcon-default btn-sm' do
+      i.fas.fa-cog.fa-fw
+    - if policy(task).destroy?
+      = link_to admin_task_path(task), class: 'btn btn-falcon-danger btn-sm', method: :delete, data: { confirm: 'Are you sure you want to remove task?' } do
+        i.fas.fa-times.fa-fw

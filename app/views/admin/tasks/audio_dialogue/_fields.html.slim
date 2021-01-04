@@ -1,0 +1,15 @@
+.form-group
+  = f.label :title, t('title'), required: true
+  = f.text_field :title, class: 'form-control', placeholder: t('admin.tasks.enter_title')
+  = error_for f.object, :title
+.form-group
+  = f.label :instruction, t('admin.tasks.instructions_for_candidate')
+  = f.text_area :instruction, rows: "3", class: 'form-control', placeholder: t('admin.tasks.enter_help_text_for_candidate')
+  = error_for f.object, :instruction
+.form-group
+  label.required= t('task_scoring_label')
+  - Task.score_methods.keys.each do |m|
+    .custom-control.custom-radio
+      = f.radio_button :score_method, m, class: 'custom-control-input'
+      = f.label "score_method_#{m}".to_sym, t("admin.tasks.shared_task_fields.score_#{m}_label"), class: 'custom-control-label'
+  = error_for f.object, :score_method

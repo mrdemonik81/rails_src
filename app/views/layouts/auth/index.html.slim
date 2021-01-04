@@ -1,0 +1,32 @@
+doctype html
+html
+  head
+    meta content=("text/html; charset=UTF-8") http-equiv="Content-Type" /
+    meta charset="utf-8" /
+    meta content="IE=edge" http-equiv="X-UA-Compatible" /
+    meta content="width=device-width, initial-scale=1" name="viewport" /
+
+    - if content_for? :title
+      title= [yield(:title), 'edun.no'].join(' | ')
+    - else
+      title edun.no
+    link href="#{image_path('favicons/apple-touch-icon.png')}" rel="apple-touch-icon" sizes="180x180" /
+    link href="#{image_path('favicons/favicon-32x32.png')}" rel="icon" sizes="32x32" type="image/png" /
+    link href="#{image_path('favicons/favicon-16x16.png')}" rel="icon" sizes="16x16" type="image/png" /
+    link href="#{image_path('favicons/favicon.ico')}" rel=("shortcut icon") type="image/x-icon" /
+    meta content="#{image_path('favicons/mstile-150x150.png')}" name="msapplication-TileImage" /
+    meta content="#ffffff" name="theme-color" /
+    = csrf_meta_tags
+    = csp_meta_tag
+    = stylesheet_pack_tag 'application', media: 'all'
+  body
+    main#top.main
+      .container-fluid
+        .content
+          - if notice
+            .alert.alert-success= notice
+          - if alert
+            .alert.alert-danger= alert
+        = yield
+
+    = javascript_pack_tag 'application'

@@ -1,0 +1,8 @@
+= form_for form, html: { id: dom_id(task, :item_form) }, as: :task_item, remote: true, url: admin_task_items_path(task) do |f|
+  .card.mb-3
+    .card-body
+      .form-group
+        = f.label :statement, class: 'w-100 sentence' do
+          = f.text_area :statement, placeholder: 'Enter text', rows: '3', class: 'form-control statement'
+          = error_for f.object, :statement
+        = f.submit 'Add block', class: 'btn btn-success'

@@ -1,0 +1,9 @@
+(function(){
+  var container = document.querySelector('#<%= dom_id(item) %> .task_item_options');
+  var tmpEl = document.createElement('div');
+  tmpEl.innerHTML = '<%= j render option, option: option, item: item %>'
+  container.insertBefore(tmpEl.firstChild, container.lastChild);
+  delete tmpEl;
+  document.querySelector('#<%= dom_id(item, :option_form) %>').reset();
+})();
+

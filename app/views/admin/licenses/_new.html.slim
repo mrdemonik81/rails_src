@@ -1,0 +1,8 @@
+= form_for license, url: admin_licenses_path, html: { id: 'license_form' }, method: :post do |f|
+  .modal-header
+    h5.mb-0= t('admin.clients.show.create_new_license')
+  .modal-body
+    = render 'license_fields', f: f, client: client
+  .modal-footer
+    button.btn.btn-falcon-default.btn-sm data-dismiss="modal" type="button"  Close
+    = f.submit t('create'), class: 'btn btn-primary'

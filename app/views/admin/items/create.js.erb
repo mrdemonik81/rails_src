@@ -1,0 +1,6 @@
+(function(){
+  var $container = $('#task_items');
+  $container.append('<%= j render item, item: item, task: task %>')
+  document.querySelector('#<%= dom_id(task, :item_form) %>').reset();
+})();
+

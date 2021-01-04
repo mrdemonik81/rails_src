@@ -1,0 +1,109 @@
+@import "~bootstrap/scss/functions";
+@import "../../theme/scss/user-variables";
+@import "~bootstrap/scss/variables";
+@import "~bootstrap/scss/mixins";
+@import "~bootstrap/scss/root";
+@import "~bootstrap/scss/reboot";
+
+@import "~bootstrap/scss/grid";
+
+@import "~bootstrap/scss/type";
+
+@import "~bootstrap/scss/progress";
+@import "~bootstrap/scss/navbar";
+@import "~bootstrap/scss/buttons";
+
+body {
+  background-color: #f8fcff;
+}
+
+.navbar {
+  height: 4rem;
+  background-color: white;
+  padding: 0;
+  .container {
+    height: 3rem;
+    .navbar-brand {
+      height: 100%;
+      padding: 0;
+      img {
+        height: 100%;
+      }
+    }
+  }
+  .progress-bar-container {
+    width: 100%;
+    height: 1rem;
+  }
+}
+
+.text-center {
+  text-align: center;
+}
+
+.pt-8 {
+  padding-top: 80px;
+}
+
+.pt-4 {
+  padding-top: 40px;
+}
+
+.pb-1 {
+  padding-bottom: 10px;
+}
+
+.btn {
+  cursor: pointer;
+}
+
+.btn:hover {
+  box-shadow: 2px 2px 2px 2px gray;
+}
+
+.bg-blue {
+  background-color: #00b4e5;
+}
+
+.bg-white {
+  background-color: white;
+}
+
+.btn-submit {
+  background-color: #68bbe3;
+  border-radius: 8px;
+  height: 56px;
+  &:hover {
+    color: white;
+    background-color: #00b4e5;
+  }
+}
+
+.white {
+  color: white;
+}
+
+hr {
+  margin: 12px 0;
+}
+
+h2.title {
+  font-size: 32px;
+  color: #233048;
+  letter-spacing: 0.25px;
+  font-weight: bold;
+}
+
+.introduction {
+  font-size: 16px;
+  letter-spacing: 0.3px;
+  color: #798497;
+}
+
+.black {
+  color: #4c5972;
+}
+
+.task-container {
+  margin-bottom: 72px;
+}

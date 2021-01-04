@@ -1,0 +1,22 @@
+.form-group
+  = f.label :title, t('admin.tasks.task_title'), required: true
+  = f.text_field :title, class: 'form-control', placeholder: t('admin.tasks.enter_title')
+  = error_for f.object, :title
+.form-group
+  = f.label :introduction, t('admin.tasks.task_introduction'), required: true
+  = f.text_area :introduction, rows: "3", class: 'form-control', placeholder: t('admin.tasks.introduction_task_placeholder')
+  = error_for f.object, :introduction
+.form-group
+  = f.label :instruction, t('admin.tasks.select_text.fields.hints_or_help')
+  = f.text_field :instruction, class: 'form-control'
+  = error_for f.object, :instruction
+.form-group
+  label= t('task_scoring_label')
+  - Task.score_methods.keys.each do |m|
+    .custom-control.custom-radio
+      = f.radio_button :score_method, m, class: 'custom-control-input'
+      = f.label "score_method_#{m}".to_sym, t(".score_#{m}_label"), class: 'custom-control-label'
+.form-group
+  .upload-btn-wrapper
+    button.btn.btn-secondary= t('admin.tasks.upload_audio')
+    = f.file_field :audio

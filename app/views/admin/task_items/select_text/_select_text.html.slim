@@ -1,0 +1,24 @@
+.div id=dom_id(item)
+  .card.mb-3
+    .card-body
+      = link_to admin_task_item_path(task, item), method: :delete, remote: true, class: 'btn btn-danger float-right', data: { confirm: 'Delete this item?' } do
+        = t('delete')
+      h4= item.question
+
+      h6.required= t('.input_answers_select')
+      .card-body
+        .task_item_options
+          - item.options.each do |option|
+            = render 'admin/task_item_options/select_text/select_text', option: option, item: item
+          = form_for item.options.form.new, as: :item_option, html: { id: dom_id(item, :option_form) }, url: admin_item_options_path(item), remote: true do |f|
+            .nested-fields
+              .card.mb-3
+                .card-body
+                  .form-inline
+                    .form-group.mr-3
+                      = f.check_box :correct, class: 'form-control'
+                    .form-group.mr-3
+                      = f.text_field :answer, class: 'form-control text-option', placeholder: 'Type answer'
+                    .form-group
+                      = f.submit 'Add answer', class: 'btn btn-success'
+                    = error_for f.object, :text_option

@@ -1,0 +1,13 @@
+= form_for form, html: { id: dom_id(task, :item_form) }, as: :task_item, remote: true, url: admin_task_items_path(task) do |f|
+  .card.mb-3
+    .card-body
+      .form-group
+        .input-group
+          = f.label :arrange_words, class: 'w-100 sentence' do
+          = f.text_field :arrange_words, class: 'form-control'
+          = error_for f.object, :arrange_words
+        .input-group
+          = f.label :additional_words, class: 'w-100 sentence' do
+          = f.text_field :additional_words, class: 'form-control'
+          = error_for f.object, :additional_words
+      = f.submit 'Save changes', class: 'btn btn-success'

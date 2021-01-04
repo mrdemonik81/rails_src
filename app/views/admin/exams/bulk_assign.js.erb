@@ -1,0 +1,12 @@
+$("#edunModal .modal-content").html("<%= j render 'admin/exams/bulk_assign_form', bulk_assign_form: bulk_assign_form, exam: exam %>");
+
+$('#edunModal select.select2').select2({
+    theme: 'bootstrap4',
+});
+
+$('#edunModal .datetimepicker').each(function (index, value) {
+    const $this = $(value);
+    const options = $.extend({dateFormat: 'd/m/y'}, $this.data('options'));
+    $this.attr('placeholder', options.dateFormat);
+    $this.flatpickr(options);
+});

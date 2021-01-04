@@ -1,0 +1,24 @@
+.card
+  .card-header
+    h5= t('admin.clients.show.create_new_license')
+  .card-body
+    = form_for license, url: admin_licenses_path, html: { id: 'license_form' }, method: :post do |f|
+      - if license.errors.any?
+        .alert.alert-warning#error_explanation
+          h5= t('count_error_message_model', count: license.errors.count, model: license.model_name.human)
+          ul
+            - license.errors.full_messages.each do |message|
+              li= message
+      .row
+        .col-lg-6
+          = render 'license_fields', f: f, client: client
+        .col-12.d-flex.mt-3
+          = f.submit t('create'), class: 'btn btn-primary mr-1'
+          = link_to t('back')
+javascript:
+  $('#edunModal .datetimepicker').each(function (index, value) {
+      const $this = $(value);
+      const options = $.extend({dateFormat: 'd/m/y'}, $this.data('options'));
+      $this.attr('placeholder', options.dateFormat);
+      $this.flatpickr(options);
+  });

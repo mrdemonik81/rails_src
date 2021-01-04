@@ -1,0 +1,14 @@
+div id=dom_id(item)
+  .card.mb-3
+    .card-body
+      strong.mr-2= item.position
+      = item.audio.filename
+      .float-right
+        - unless item.first?
+          = link_to move_up_admin_task_item_path(task, item), method: :patch, remote: true, class: 'btn move_up', aria: { label: t('move_up') } do
+            span.fas.fa-chevron-up
+        - unless item.last?
+          = link_to move_down_admin_task_item_path(task, item), method: :patch, remote: true, class: 'btn move_down', aria: { label: t('move_down') } do
+            span.fas.fa-chevron-down
+        = link_to admin_task_item_path(task, item), method: :delete, remote: true, class: 'btn btn-danger', data: { confirm: t('delete_this_item') } do
+          span.fas.fa-times

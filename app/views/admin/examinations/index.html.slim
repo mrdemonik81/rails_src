@@ -1,0 +1,27 @@
+- content_for :title do
+  = t('examinations')
+.card.mb-3
+  .card-header
+    .d-flex.justify-content-between
+      h4.mb-0= t('examinations')
+    = link_to new_admin_examination_path, class: 'card-link' do
+      = t('.assign_exam_to_candidate')
+      i.fas.fa-chevron-right.fa-fw
+.card.mb-3
+  .card-header
+    h5= t('admin.clients.examinations.count_examinations', count: examinations.total_entries)
+
+  = render partial: 'admin/examinations/list', locals: { examinations: examinations }
+
+- content_for(:filters) do
+  = search_form_for search_form, url: admin_examinations_path, method: :get, enforce_utf8: false do |f|
+    .form-group
+      = f.label t('admin.examinations.new.select_client')
+      = f.select :client_candidate_client_id_eq, options_from_collection_for_select(Client.all, :id, :name, params.dig(:q, :client_candidate_client_id_eq)), { include_blank: '' }, class: 'select2 form-control'
+
+    .form-group
+      = f.label t('status')
+      = f.select :status_eq, options_for_select(Examination.statuses, params.dig(:q, :published_true)), { include_blank: '  ' }, class: 'select2 form-control bg-white'
+
+    .form-group
+      = submit_tag t('filter'), class: 'btn btn-falcon-default'

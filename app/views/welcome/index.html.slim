@@ -1,0 +1,22 @@
+- content_for :title do
+  = t('welcome.signin.welcome_title')
+.jumbotron
+  .card.mb-3
+    .card-header
+      h2 Welcome to Edun
+    .card-body
+      ul.nav.flex-column
+        li.nav-item
+          = link_to t('admin.tasks.new.new_task'), new_admin_task_path, class: 'nav-link'
+        li.nav-item
+          = link_to t('admin.tasks.index.task_base'), admin_tasks_path, class: 'nav-link'
+        li.nav-item
+          = link_to t('admin.users.index.user_management'), admin_users_path, class: 'nav-link'
+        li.nav-item
+          = link_to t('admin.users.index.client_management'), admin_clients_path, class: 'nav-link'
+        li.nav-item
+          = link_to t('admin.candidates.index.candidate_management'), admin_candidates_path, class: 'nav-link'
+        li.nav-item
+          = link_to t('admin.exams.index.manage_exams'), admin_exams_path, class: 'nav-link'
+        li.nav-item
+          = link_to t('examinations'), admin_examinations_path, class: 'nav-link'

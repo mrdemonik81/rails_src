@@ -1,0 +1,68 @@
+- if exam.errors.any?
+  .alert.alert-warning#error_explanation
+    h5
+      = t('count_error_message_model', count: exam.errors.count, model: exam.model_name.human)
+    ul
+      - exam.errors.full_messages.each do |message|
+        li= message
+.row
+  .col-lg-7
+    .form-group
+      = f.label :name, t('name')
+      = f.text_field :name, class: 'form-control'
+      = error_for f.object, :name
+    .form-group
+      = f.label :price, t('admin.exams.new.default_price')
+      .input-group
+        .input-group-prepend
+          span.input-group-text= t('nok')
+        = f.text_field :price, class: 'form-control'
+        = error_for f.object, :price
+    .form-group
+      = f.label :description, t('description')
+      = f.text_area :description, rows: "8", class: 'form-control', placeholder: t('.description_placeholder')
+    .form-group
+      = f.label :max_tasks, t('admin.exams.new.maximum_tasks')
+      = f.number_field :max_tasks, class: 'form-control'
+      = error_for f.object, :max_tasks
+    .form-group
+      = f.label :max_time_human, t('admin.exams.new.maximum_time')
+      = f.text_field :max_time_human, class: 'form-control', placeholder: 'Ex. 45 mins', value: ChronicDuration.output(exam.max_time || 0)
+      = error_for f.object, :max_time_human
+
+  .col-lg-5
+    .form-group
+      label= t('result_type_label')
+      - Exam.result_types.keys.each do |rt|
+        .custom-control.custom-radio
+          = f.radio_button :result_type, rt, class: 'custom-control-input'
+          = f.label "result_type_#{rt}".to_sym, rt.humanize, class: 'custom-control-label'
+    .form-group
+      label= t('task_algorithm')
+      - Exam.algorithms.keys.each do |a|
+        .custom-control.custom-radio
+          = f.radio_button :algorithm, a, class: 'custom-control-input'
+          = f.label "algorithm_#{a}".to_sym, a.humanize, class: 'custom-control-label'
+
+    .form-group
+      = f.label t('admin.tasks.new.select_task_type')
+      = f.select :task_types, options_for_select(Task.types_for_select, params.dig(:task_types)), { include_blank: '' }, multiple: true, class: 'select2 form-control bg-white'
+    .form-group
+      = f.label t('admin.tasks.relations.select_skills')
+      = f.collection_select :skill_ids, Skill.all, :id, :name, {}, multiple: true, class: 'select2 form-control bg-white'
+    .form-group
+      = f.label t('admin.tasks.relations.select_domains')
+      = f.collection_select :domain_ids, Domain.all, :id, :name, {}, multiple: true, class: 'select2 form-control bg-white'
+    .form-group
+      = f.label t('admin.tasks.relations.select_levels')
+      = f.collection_select :level_ids, Level.all, :id, :name, {}, multiple: true, class: 'select2 form-control bg-white'
+.row
+  .col-lg-12
+    .form-group
+      .custom-control.custom-switch
+        = f.check_box :published, class: 'custom-control-input'
+        = f.label :published, t('publish_exam'), class: 'custom-control-label'
+
+  .col-12.d-flex.mt-3
+    = f.submit t('save'), class: 'btn btn-primary mr-1'
+    = link_to t('back'), admin_exams_path, class: 'btn btn-secondary mr-1'

@@ -1,0 +1,12 @@
+a#navbarDropdownUser.nav-link.pr-0 aria-expanded="false" aria-haspopup="true" data-toggle="dropdown" href="#" role="button"
+  .avatar.avatar-xl
+    img.rounded-circle alt="" src="https://placekeanu.com/200/200" /
+.dropdown-menu.dropdown-menu-right.py-0 aria-labelledby="navbarDropdownUser"
+  .bg-white.rounded-soft.py-2
+    a.dropdown-item.font-weight-bold.text-warning href="#!"
+      span= current_user.full_name
+    .dropdown-divider
+    = link_to t('.my_profile'), edit_user_registration_path, class: 'dropdown-item'
+    .dropdown-divider
+    a.dropdown-item href='#!'  Settings
+    = link_to t('sign_out'), destroy_user_session_path, class: 'dropdown-item', method: :delete

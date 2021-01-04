@@ -1,0 +1,31 @@
+- content_for :title do
+  = t('.new_task')
+- task_form = @task_form unless task_form
+.content
+  .row
+    .col-lg-12
+      .card.mb-3
+        .card-header
+          h2= t('.new_task')
+        .card-body
+          = form_for task_form, as: :task, url: admin_tasks_path do |f|
+            .row
+              .col-md-6.col-sm-12
+                .form-group
+                  = f.label :name, required: true
+                  = f.text_field :name, class: 'form-control'
+                  = error_for f.object, :name
+              .col-md-6.col-sm-12
+                .form-group
+                  = f.label :type, required: true
+                  = f.select :type, options_for_select(Task.types_for_select, f.object.type), { prompt: t('.select_task_type') }, class: 'form-control'
+                  = error_for f.object, :type
+            = render 'admin/tasks/relations', f: f
+            .row
+              .col-md-6.col-sm-12
+                .form-group
+                  = f.label :complexity, required: true
+                  = f.select :complexity, options_for_select(Task.complexities.keys, f.object.complexity), {}, class: 'form-control'
+                  = error_for f.object, :complexity
+              .col-12
+                = f.submit t('.save_and_continue'), class: 'btn btn-primary'

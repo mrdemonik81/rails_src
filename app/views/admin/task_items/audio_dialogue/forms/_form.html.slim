@@ -1,0 +1,15 @@
+= form_for form, html: {id: dom_id(task, :item_form)}, as: :task_item, remote: true, url: admin_task_items_path(task) do |f|
+  .card.mb-3
+    .card-body
+      .row
+        .col-6.form-group
+          = f.label :partner_name, t('admin.tasks.audio_dialogue.forms.form.partner_name')
+          = f.text_field :partner_name, placeholder: t('admin.tasks.audio_dialogue.forms.form.enter_name_of_partner'), class: 'form-control'
+        .col-6.form-group
+          label= t('admin.tasks.upload_audio')
+          br
+          .upload-btn-wrapper
+            button.btn.btn-secondary= t('upload')
+            = f.file_field :audio
+          = f.hidden_field :position
+      = f.submit t('save_changes'), class: 'btn btn-primary'

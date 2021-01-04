@@ -1,0 +1,43 @@
+- content_for :title do
+  = t('.client_management')
+
+.card.mb-3.overflow-hidden
+  .bg-holder.d-none.d-lg-block.bg-card style="background-image:url(#{image_path('illustrations/corner1.png')};"
+  .card-body
+    .row
+      .col-lg-8
+        h3.mb-0= t('.client_management')
+        p.mt-2 The clients on the platform are schools or companies. Clients can enrol candidates to courses and create examinations.
+        a.btn.btn-link.pl-0.btn-sm href="https://getbootstrap.com/docs/4.3/components/media-object/" target="_blank"
+        = link_to new_admin_client_path, class: 'card-link' do
+          = t('.create_new_client')
+          i.fas.fa-chevron-right.fa-fw
+
+.card.mb-3
+  .card-header
+    h5.mb-0
+      = t('.active_clients')
+      = " (#{clients.total_entries})"
+  = will_paginate clients
+  table.table.thead-light.table-hover.table-condensed
+    thead
+      tr
+        th= t('name')
+        th= t('users')
+        th= t('candidates')
+        th= t('examinations')
+        th= t('enrolments')
+        th LTV
+        th= t('actions')
+    tbody
+      - clients.each do |client|
+        tr
+          td= link_to client.name, admin_client_path(client)
+          td= client.users.count
+          td= link_to client.candidates.count, candidates_admin_client_path(client)
+          td= link_to client.examinations.count, admin_client_examinations_path(client)
+          td 0
+          td NOK 0
+          td
+            - if policy(client).update?
+              = link_to t('edit'), admin_client_path(client), class: 'btn btn-secondary btn-sm'

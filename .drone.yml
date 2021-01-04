@@ -1,0 +1,154 @@
+kind: pipeline
+name: default
+clone:
+  depth: 1
+
+steps:
+  - name: Restore ruby cache
+    image: meltwater/drone-cache:latest
+    settings:
+      restore: true
+      cache_key: '{{ checksum "Gemfile.lock" }}'
+      backend: filesystem
+      mount:
+        - 'vendor/bundle'
+        - 'bundle'
+
+  - name: Restore node cache
+    image: meltwater/drone-cache:latest
+    settings:
+      restore: true
+      cache_key: '{{ checksum "yarn.lock" }}'
+      backend: filesystem
+      mount:
+        - 'node_modules'
+        - 'public/packs-test'
+
+  - name: Install ruby deps
+    image: railsme/ruby-chrome:2.6.3
+    environment:
+      BUNDLE_PATH: 'vendor/bundle'
+    commands:
+      - bundle install
+
+  - name: Install node deps
+    image: node:10-alpine
+    environment:
+      RAILS_ENV: test
+      NODE_ENV: test
+    commands:
+      - yarn install
+
+  - name: Frontend Tests
+    image: node:10-alpine
+    commands:
+      - yarn test
+    when:
+      status: success
+
+  - name: Build webpack for tests
+    image: node:10-alpine
+    environment:
+      RAILS_ENV: test
+      NODE_ENV: test
+    commands:
+      - yarn run webpack --config config/webpack/test.js
+
+  - name: Setup
+    image: railsme/ruby-chrome:2.6.3
+    environment:
+      BUNDLE_PATH: 'vendor/bundle'
+      RAILS_ENV: test
+    commands:
+      - cp config/drone.database.yml config/database.yml
+      - cp config/drone.redis.yml config/redis.yml
+      - bundle exec rake db:test:prepare
+    when:
+      status:
+        - success
+
+  - name: Cucumber
+    image: railsme/ruby-chrome:2.6.3
+    environment:
+      BUNDLE_PATH: 'vendor/bundle'
+      RAILS_ENV: test
+    commands:
+      - bundle exec cucumber
+    when:
+      status:
+        - success
+
+  - name: RSpec
+    image: railsme/ruby-chrome:2.6.3
+    environment:
+      BUNDLE_PATH: 'vendor/bundle'
+      RAILS_ENV: test
+    commands:
+      - bundle exec rspec
+    when:
+      status:
+        - success
+
+  - name: Rubocop
+    image: railsme/ruby-chrome:2.6.3
+    environment:
+      BUNDLE_PATH: 'vendor/bundle'
+    commands:
+      - bundle exec rubocop --parallel
+    when:
+      status:
+        - success
+        - failure
+
+  - name: Notify by email
+    image: drillster/drone-email
+    settings:
+      from: "Drone <drone@ci.railsme.ninja>"
+      host:
+        from_secret: smtp_host
+      username:
+        from_secret: smtp_user
+      password:
+        from_secret: smtp_password
+      recipients:
+        - anatolii@lingu.no
+      recipients_only: true
+    when:
+      status:
+        - changed
+        - success
+        - failure
+      event:
+        - push
+
+  - name: Rebuild ruby cache
+    image: meltwater/drone-cache:latest
+    settings:
+      rebuild: true
+      cache_key: '{{ checksum "Gemfile.lock" }}'
+      backend: filesystem
+      mount:
+        - 'vendor/bundle'
+        - 'bundle'
+    when:
+      status: [ success, failure ]
+
+  - name: Rebuild node cache
+    image: meltwater/drone-cache:latest
+    settings:
+      rebuild: true
+      cache_key: '{{ checksum "yarn.lock" }}'
+      backend: filesystem
+      mount:
+        - 'node_modules'
+    when:
+      status: [ success, failure ]
+
+services:
+  - name: postgres
+    image: postgres:11-alpine
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_DB: test
+  - name: redis
+    image: redis:alpine

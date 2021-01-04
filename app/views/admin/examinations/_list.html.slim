@@ -1,0 +1,26 @@
+= will_paginate examinations
+#examinations_list.bg-light
+  table.table.thead-light.table-hover.table-condensed
+    thead
+      tr
+        th= t('name')
+        th= t('client')
+        th= t('status')
+        th= t('time_spent')
+        th= t('score')
+        th= t('actions')
+    tbody
+      - examinations.each do |examination|
+        tr
+          td= link_to examination.candidate.full_name, edit_admin_candidate_path(examination.candidate)
+          td= link_to examination.client.name, admin_client_path(examination.client)
+          td= examination_status_tag(examination)
+          td= examination.total_time_spent_human
+          td= examination.total_score
+          td
+            - if examination.completed? && policy(examination).show?
+              = link_to admin_examination_path(examination), class: 'btn btn-falcon-primary btn-sm' do
+                = t('.score')
+            - elsif policy(examination).destroy?
+              = link_to admin_examination_path(examination), class: 'btn btn-falcon-danger btn-sm', method: :delete, data: { confirm: 'Are you sure you want to remove examination?' } do
+                i.fas.fa-times.fa-fw

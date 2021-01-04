@@ -1,0 +1,10 @@
+- content_for :title do
+  = t('admin.exams.index.create_new_exam')
+
+.card
+  .card-header
+    h5.mb-0
+      = t('admin.exams.index.create_new_exam')
+  .card-body
+    = form_for exam, url: admin_exams_path, html: { id: 'exam_form' }, method: :post do |f|
+      = render partial: 'admin/exams/form', locals: { f: f, exam: exam }

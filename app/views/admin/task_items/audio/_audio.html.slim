@@ -1,0 +1,11 @@
+= form_for item, as: :task_item, remote: true, url: admin_task_item_path(:task_id => item.task_id, :id => item.id) do |f|
+  .card.mb-3
+    .card-body
+      .form-group
+        = f.label :minimum_duration, class: 'w-100 sentence' do
+          h4.required= t('.minimum_duration')
+          .input-group
+            = f.text_field :minimum_duration, placeholder: t('admin.task_items.audio.audio.input_minimum_duration'), class: 'form-control question'
+            .input-group-append
+            = f.submit t('save_changes'), class: 'btn btn-primary'
+          = error_for f.object, :minimum_duration

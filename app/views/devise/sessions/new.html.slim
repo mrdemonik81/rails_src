@@ -1,0 +1,38 @@
+- content_for :title do
+  = t('welcome.signin.welcome_title')
+
+.row.min-vh-100.flex-center.no-gutters
+  .col-lg-8.col-xxl-5.py-3.overflow-hidden
+    .card.overflow-hidden.z-index-1
+      .card-body.p-0
+        .row.no-gutters.h-100
+          .col-md-5.text-center.bg-card-gradient
+            .position-relative.p-4.pt-md-5.pb-md-7
+              .align-items-center
+                img.mr-2 alt="" src="#{image_path('edun-logo.svg')}" width="150"
+              p.h4.mt-5 Welcome to Edun!
+              p.h4.mt-5 Edun.no provides digital exams and e-learning to help you learn a new language.
+            .mt-3.mb-4.mt-md-4.mb-md-5
+              - if devise_mapping.registerable? && controller_name != 'registrations'
+                p Don't have an account?
+                br
+                p= link_to "Sign up", new_registration_path(resource_name)
+              p.mb-0.mt-4.mt-md-5.fs--1.font-weight-semi-bold
+                | Read our
+                a.text-underline href="#!"  terms and conditions
+          .col-md-7.d-flex.flex-center
+            .p-4.p-md-5.flex-grow-1
+              h3= t('devise.account_login')
+              = render 'devise/sessions/new'
+
+              .w-100.position-relative.mt-5
+                hr
+                .position-absolute.absolute-centered.t-0.px-3.bg-white.text-sans-serif.fs--1.text-500.text-nowrap or sign-in with
+              .form-group.mb-0
+                .row.no-gutters
+                  .col-sm-6.pr-sm-1
+                    - unless current_user
+                      = link_to 'Sign in with Google', '/users/auth/google_oauth2', class: 'btn btn-falcon-primary btn-block'
+                  .col-sm-6.pl-sm-1
+                    a.btn.btn-sm.btn-block.mt-2 href="#"
+                      | Feide

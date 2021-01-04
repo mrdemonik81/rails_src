@@ -1,0 +1,70 @@
+nav.navbar.navbar-light.navbar-glass.fs--1.font-weight-semi-bold.row.navbar-top.sticky-kit.navbar-expand
+  button.navbar-toggler.collapsed aria-controls="navbarVerticalCollapse" aria-expanded="false" aria-label=("Toggle navigation") data-target="#navbarVerticalCollapse" data-toggle="collapse" type="button"
+    span.navbar-toggler-icon
+  a.navbar-brand.text-left.ml-3 href="/"
+    .d-flex.align-items-center
+      img.mr-2 alt="" src="#{image_path('edun-logo.svg')}" width="90" /
+  #navbarNavDropdown1.collapse.navbar-collapse
+    ul.navbar-nav.align-items-center.d-none.d-lg-block
+      li.nav-item
+        form.form-inline.search-box
+          input.form-control.rounded-pill.search-input aria-label="Search" placeholder="Search..." type="search" /
+          span.position-absolute.fas.fa-search.text-400.search-box-icon
+    ul.navbar-nav.align-items-center.ml-auto
+      li.nav-item.dropdown
+        a#navbarDropdownNotification.nav-link.unread-indicator.px-0 aria-expanded="false" aria-haspopup="true" data-toggle="dropdown" href="#" role="button"
+          span.fas.fa-bell.fs-2.fa-fw data-fa-transform="shrink-6"
+        .dropdown-menu.dropdown-menu-right.dropdown-menu-card aria-labelledby="navbarDropdownNotification"
+          .card.card-notification.shadow-none style=("max-width: 20rem")
+            .card-header
+              .row.justify-content-between.align-items-center
+                .col-auto
+                  h6.card-header-title.mb-0 Notifications
+                .col-auto
+                  a.card-link.font-weight-normal href="#"  Mark all as read
+            .list-group.list-group-flush.font-weight-normal.fs--1
+              .list-group-title NEW
+              .list-group-item
+                a.notification.notification-flush.bg-200 href="#!"
+                  .notification-avatar
+                    .avatar.avatar-2xl.mr-3
+                      img.rounded-circle alt="" src="https://placekeanu.com/200/200" /
+                  .notification-body
+                    p.mb-1
+                      strong Emma Watson
+                      | replied to your comment : "Hello world 😍"
+                    span.notification-time
+                      span.mr-1 aria-label="Emoji" role="img" > 💬
+                      | Just now
+              .list-group-item
+                a.notification.notification-flush.bg-200 href="#!"
+                  .notification-avatar
+                    .avatar.avatar-2xl.mr-3
+                      .avatar-name.rounded-circle
+                        span AB
+                  .notification-body
+                    p.mb-1
+                      strong Albert Brooks
+                      | reacted to
+                      strong Mia Khalifa's
+                      | status
+                    span.notification-time
+                      span.mr-1.fab.fa-gratipay.text-danger
+                      | 9hr
+              .list-group-title EARLIER
+              .list-group-item
+                a.notification.notification-flush href="#!"
+                  .notification-avatar
+                    .avatar.avatar-2xl.mr-3
+                      img.rounded-circle alt="" src="https://placekeanu.com/200/150" /
+                  .notification-body
+                    p.mb-1 The forecast today shows a low of 20℃ in California. See today's weather.
+                    span.notification-time
+                      span.mr-1 aria-label="Emoji" role="img" > 🌤️
+                      | 1d
+            .card-footer.text-center.border-top-0
+              a.card-link.d-block href="../pages/notifications.html"  View all
+      - if current_user
+        li.nav-item.dropdown= render 'layouts/admin/profile_menu'
+      - else
+        li.nav-item= link_to 'Sign in with Google', '/users/auth/google_oauth2', class: 'btn btn-primary'

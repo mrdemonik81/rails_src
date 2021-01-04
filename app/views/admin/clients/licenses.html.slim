@@ -1,0 +1,15 @@
+.card.mb-3
+  .card-header
+    .d-flex.justify-content-between
+      h3.mb-0= t('.licenses_at_client', client: client.name)
+      = link_to t('back'), admin_client_path(client), class: 'btn btn-falcon-secondary btn-sm'
+    = link_to new_admin_license_path, class: 'card-link' do
+      = t('admin.clients.show.create_new_license')
+      i.fas.fa-chevron-right.fa-fw
+.card.mb-3
+  .card-header
+    h5
+      = t('.active_licenses')
+      = " (#{licenses.kept.sum(:amount)})"
+  .card-body
+    = render partial: 'client_licenses', locals: { licenses: client.licenses.paginate(page: params[:page]) }

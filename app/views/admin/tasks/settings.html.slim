@@ -1,0 +1,38 @@
+- content_for :title do
+  = @task.name
+.row
+  .col-lg-12
+    .card.mb-3
+      .card-header
+        h3= t('.task_settings_for', name: @task.name)
+      .card-body
+        = form_for task_form, as: :task, url: update_settings_admin_task_path(@task), method: :patch do |f|
+          .row
+            .col-md-6.col-sm-12
+              .form-group
+                = f.label :name, required: true
+                = f.text_field :name, class: 'form-control'
+                = error_for f.object, :name
+            .col-md-6.col-sm-12
+              label= t('.task_type')
+              p= t(@task.type.underscore, scope: 'tasks.types')
+          = render 'admin/tasks/relations', f: f
+          .row
+            .col-md-6.col-sm-12
+              .form-group
+                = f.label :complexity, required: true
+                = f.select :complexity, options_for_select(Task.complexities.keys, f.object.complexity), {}, class: 'form-control'
+                = error_for f.object, :complexity
+            .col-md-6.col-sm-12
+              .form-group
+                = f.label :performance, required: true
+                = f.number_field :performance, class: 'form-control', min: 0.0, max: 1.0, step: 0.1
+                = error_for f.object, :performance
+            .col-sm-12
+              .form-group
+                .custom-control.custom-switch
+                  = f.check_box :published, class: 'custom-control-input'
+                  = f.label :published, t('published'), class: 'custom-control-label'
+            .col-12
+              = f.submit t('update'), class: 'btn btn-primary mr-2'
+              = link_to t('.content'), edit_admin_task_path(@task), class: 'btn btn-falcon-primary'

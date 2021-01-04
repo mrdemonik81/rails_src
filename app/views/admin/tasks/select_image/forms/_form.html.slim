@@ -1,0 +1,19 @@
+.card
+  .card-header
+    .d-flex.justify-content-between.align-items-center
+      h2.mb-1= task.name
+      = link_to settings_admin_task_path(task), class: 'btn btn-light float-right' do
+        i.fas.fa-cog.fa-fw
+        = t('edit')
+    p.card-text= t(task.type.underscore, scope: 'tasks.types')
+  .card-body
+    = form_for form, as: :task, url: admin_task_path(task), method: :patch do |f|
+      = render 'admin/tasks/shared_task_fields', f: f
+      = f.submit t('save_changes'), class: 'btn btn-primary'
+
+#task_items.mt-5
+  .h2 Upload images and select correct answer
+  - task.items.each do |item|
+    = render 'admin/task_items/select_image/select_image', item: item, task: task
+  .links
+    = render task.items.form.new, task: task

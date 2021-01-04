@@ -1,0 +1,13 @@
+.table-responsive
+  table.table.table-sm.mb-0.table-dashboard.fs--.data-tabl.border-bottom
+    thead.bg-200.text-900
+      tr
+        th.align-middle= t('admin.clients.index.resource')
+        th.align-middle= t('amount')
+        th.align-middle= t('created')
+        th.align-middle= t('expires_at')
+        th.align-middle= t('deleted')
+        th.align-middle= t('actions')
+    tbody
+      - licenses.each do |license|
+        = render 'admin/licenses/license_row', license: license

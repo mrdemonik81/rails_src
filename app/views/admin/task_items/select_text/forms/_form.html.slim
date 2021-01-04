@@ -1,0 +1,11 @@
+= form_for form, html: { id: dom_id(task, :item_form) }, as: :task_item, remote: true, url: admin_task_items_path(task) do |f|
+  .card.mb-3
+    .card-body
+      .form-group
+        = f.label :question, class: 'w-100 sentence' do
+          h4.required= t('.new_question')
+          .input-group
+            = f.text_field :question, placeholder: 'Type your question here', class: 'form-control question'
+            .input-group-append
+            = f.submit t('.add_question'), class: 'btn btn-success'
+          = error_for f.object, :question

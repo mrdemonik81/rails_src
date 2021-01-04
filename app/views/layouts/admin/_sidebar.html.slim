@@ -1,0 +1,66 @@
+nav.navbar.navbar-vertical.navbar-expand-xl.navbar-light.navbar-glass
+  a.navbar-brand.text-left href="/"
+    .d-flex.align-items-center
+      img.mr-2 alt="" src="#{image_path('edun-logo.svg')}" style=("margin: 0 20px;") width="146" /
+  #navbarVerticalCollapse.collapse.navbar-collapse
+    ul.navbar-nav.flex-column
+      li.nav-item
+        a.nav-link.dropdown-indicator aria-controls="users" aria-expanded="false" data-toggle="collapse" href="#users" role="button"
+          .d-flex.align-items-center
+            span.nav-link-icon
+              span.fas.fa-users
+            span= t('users')
+        ul#users.nav.collapse data-parent="#navbarVerticalCollapse"
+          li.nav-item
+            = link_to 'Manage users', admin_users_path, class: 'nav-link'
+          li.nav-item
+            = link_to 'Manage clients', admin_clients_path, class: 'nav-link'
+          li.nav-item
+            = link_to 'Manage candidates', admin_candidates_path, class: 'nav-link'
+
+      li.nav-item
+        a.nav-link.dropdown-indicator aria-controls="exams" aria-expanded="false" data-toggle="collapse" href="#exams" role="button"
+          .d-flex.align-items-center
+            span.nav-link-icon
+              span.fas.fa-puzzle-piece
+            span= t('exams')
+        ul#exams.nav.collapse data-parent="#navbarVerticalCollapse"
+          li.nav-item
+            = link_to t('admin.tasks.new.new_task'), new_admin_task_path, class: 'nav-link text-success strong'
+          li.nav-item
+            = link_to t('admin.tasks.index.task_base'), admin_tasks_path, class: 'nav-link'
+          li.nav-item
+            = link_to t('exams'), admin_exams_path, class: 'nav-link'
+          li.nav-item
+            = link_to t('examinations'), admin_examinations_path, class: 'nav-link'
+      li.nav-item
+        a.nav-link.dropdown-indicator aria-controls="courses" aria-expanded="false" data-toggle="collapse" href="#courses" role="button"
+          .d-flex.align-items-center
+            span.nav-link-icon
+              span.fas.fa-plug
+            span Courses
+        ul#courses.nav.collapse data-parent="#navbarVerticalCollapse"
+          li.nav-item
+            a.nav-link href="#"  All courses
+          li.nav-item
+            a.nav-link href="#"  Enrolments
+    hr.border-300.my-2
+    ul.navbar-nav.flex-column
+      li.nav-item
+        a.nav-link.dropdown-indicator aria-controls="documentation" aria-expanded="false" data-toggle="collapse" href="#documentation" role="button"
+          .d-flex.align-items-center
+            span.nav-link-icon
+              span.fas.fa-book
+            span Reports
+        ul#documentation.nav.collapse data-parent="#navbarVerticalCollapse"
+          li.nav-item
+            a.nav-link href=""  Report1
+          li.nav-item
+            a.nav-link href=""  Report2
+      li.nav-item
+        a.nav-link href=""
+          .d-flex.align-items-center
+            span.nav-link-icon
+              span.fas.fa-code-branch
+            span Changelog
+            span.badge.badge-pill.ml-2.badge-soft-primary v1.8.0
